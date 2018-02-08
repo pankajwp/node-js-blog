@@ -1,0 +1,79 @@
+	<!-- DataTables CSS -->
+	<link href="/assests/admin/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
+
+	<!-- DataTables Responsive CSS -->
+	<link href="/assests/admin/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
+	<div id="page-wrapper">
+			<div class="row">
+					<div class="col-lg-12">
+							<h1 class="page-header">Post List</h1>
+							<a class="btn btn-primary pull-right" href="<%= baseUrl+"/admin/add_post" %>">Add Post</a>
+					</div>
+					
+					<!-- /.col-lg-12 -->
+			</div>
+			<!-- /.row -->
+			<div class="row">
+				<% if(typeof alertMsg !== "undefined"){ %>
+					<div class="alert alert-success alert-dismissable">
+							<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+							<%= alertMsg %>
+					</div>
+				<% } %>
+					<div class="col-lg-12 col-md-12">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+									Posts List
+							</div>
+							<% if(typeof lists !=="undefined") { %> 
+							<div class="panel-body">
+								<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+									<thead>
+											<tr>
+													<th>Title</th>
+													<th>Desc</th>
+													<th>Created</th>
+													<th>Updated</th>
+													<th>Action</th>
+											</tr>
+									</thead>
+									<tbody>
+									<% for(var post of lists) { %>
+										<tr class="odd gradeX">
+												<td><%= post.title %></td>												
+												<td><%= post.smallDesc %></td>
+												<td class="center"><%= moment(post.createdAt).format("YYYY-MM-DD HH:mm") %></td>
+												<td class="center"><%= moment(post.updatedAt).format("YYYY-MM-DD HH:mm") %></td>
+												<td><a href="<%= baseUrl+"edit_post/?post_id="+post._id %>">Edit</td>
+										</tr>
+									<% } %>
+									</tbody>
+								</table>
+							</div>
+						<% } else{ %>
+							<div class="panel-body">
+								<h3> Sorry no Category found </h3>
+							</div>
+						<% }%>
+						</div>
+					</div>
+			</div>
+			<!-- /.row -->
+	</div>
+	<!-- /#page-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+
+<!-- DataTables JavaScript -->
+<script src="/assests/admin/vendor/datatables/js/jquery.dataTables.min.js"></script>
+<script src="/assests/admin/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+<script src="/assests/admin/vendor/datatables-responsive/dataTables.responsive.js"></script>
+<script>
+$(document).ready(function() {
+		$('#dataTables-example').DataTable({
+				responsive: true,
+				"pageLength": 5
+		});
+});
+</script>

@@ -1,0 +1,62 @@
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Edit Post</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+						<% if(typeof alertMsg !== "undefined") { %>
+							<div class="alert alert-danger alert-dismissable">
+								<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+								<%= alertMsg %>
+							</div>
+						<%  } %>
+                <div class="col-lg-12 col-md-12">
+									<div class="panel panel-default">
+										<div class="panel-heading">
+												Add a new post
+										</div>
+										<div class="panel-body">
+											<div class="row">
+												<div class="col-lg-6">
+													<form role="form" action="<%= baseUrl %>/admin/edit_post" method="post">
+														<div class="form-group">
+																<label>Text Input</label>
+																<input name="title" value="<%= post.title %>" class="form-control"/>																
+																<input type="hidden" name="id" value="<%= post._id %>" class="form-control"/>																
+														</div>
+														
+														<div class="form-group">
+																<label>Slug</label>
+																<input name="slug" value="<% if(typeof post.slug == "undefined"){ %> <%= slugify(post.title, {lower: true}) %> <% } else { %> <%= post.slug %> <% }%> " class="form-control"/>																
+														</div>
+														<!-- <div class="form-group"> -->
+																<!-- <label>File input</label> -->
+																<!-- <input type="file"> -->
+														<!-- </div> -->
+														<div class="form-group">
+																<label>Text area</label>
+																<textarea name="smallDesc" class="form-control" rows="2"><%= post.smallDesc %></textarea>
+														</div>
+														<div class="form-group">
+																<label>Text area</label>
+																<textarea name="desc" class="form-control" rows="5"><%= post.desc %></textarea>
+														</div>
+													
+														<button type="submit" class="btn btn-default">Submit Button</button>
+														<button type="reset" class="btn btn-warning">Reset Button</button>
+													</form>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
