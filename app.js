@@ -3,7 +3,7 @@ var app = express();
 var port = process.env.PORT || 3000;
 var expressLayouts = require('express-ejs-layouts');
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://test:test@ds119736.mlab.com:19736/addressbook');
+mongoose.connect('mongodb-connection');
 
 
 var Schema = mongoose.Schema;
